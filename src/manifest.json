@@ -8,14 +8,13 @@
     "96": "icon/96.png",
     "128": "icon/128.png"
   },
-  "{{chrome}}.action": {
-    "default_popup": "src/popup.html"
-  },
+  "{{chrome}}.action": {},
   "{{firefox}}.browser_action": {
     "default_popup": "src/popup.html"
   },
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
-  }
+  },
+  "devtools_page": "src/devtools_page.html"
 }
