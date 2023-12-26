@@ -1,18 +1,15 @@
-/* eslint perfectionist/sort-imports: "error" */
-/* eslint perfectionist/sort-objects: "error" */
+import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-import webExtension, { readJsonFile } from 'vite-plugin-web-extension'
+import webExtension from 'vite-plugin-web-extension'
+import { configManifest } from './src/config/manifest'
+
+const alias = {
+  '@': path.join(__dirname, 'src'),
+}
 
 function generateManifest() {
-  const manifest = readJsonFile('src/manifest.json')
-  const pkg = readJsonFile('package.json')
-  return {
-    description: pkg.description,
-    name: pkg.name,
-    version: pkg.version,
-    ...manifest,
-  }
+  return configManifest
 }
 
 // https://vitejs.dev/config/
@@ -24,4 +21,5 @@ export default defineConfig({
       watchFilePaths: ['package.json', 'manifest.json'],
     }),
   ],
+  resolve: { alias },
 })
